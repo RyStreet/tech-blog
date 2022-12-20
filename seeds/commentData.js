@@ -3,12 +3,11 @@ const {Comment} = require('../models');
 const commentData = [
     {
         content: "Great Post!",
-        user_id: 1,
+        blog_id: 1,
     },
     {
         content: "Could not agree more",
-        user_id: 0,
-
+        blog_id: 2,
     }
 ]
 
