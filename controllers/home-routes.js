@@ -10,17 +10,27 @@ router.get('/', async (req,res) =>{
                     model: User,
                     attributes: ['username']
                 },
+                {
+                    model: Comment,
+                    attributes: ["id", "content", "user_id", "blog_id"],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+                }
             ],
         });
         const blogPosts = blogData.map((blog)=> blog.get({plain: true}));
 
         res.render('homepage', {
             blogPosts,
-            
+            logged_in: req.session.logged_in
         });
     } catch (err){
         res.status(500).json(err)
     }
-})
+});
+
+
 
 module.exports = router;
