@@ -1,0 +1,12 @@
+{{#each blogs as |blog|}}
+<section>
+<div id="credentials">
+        <h3 style="float: left;" id="title">{{blog.title}}</h3>
+        <h3 style="float:right;" id="author">{{user.username}}</h3>
+</div>
+
+<div id="content">
+    <p>{{blog.content}}</p>
+</div>
+</section>
+{{/each}}
