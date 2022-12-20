@@ -1,12 +1,17 @@
-{{#each blogs as |blog|}}
-<section>
-<div id="credentials">
-        <h3 style="float: left;" id="title">{{blog.title}}</h3>
-        <h3 style="float:right;" id="author">{{user.username}}</h3>
-</div>
+{{#each blogPosts as |blog|}}
+<div id = "blogPosts" class = "container border border-dark mt-3">
 
-<div id="content">
+  <div class = "row" id="titles">
+    <div class ="col-sm-8" style="background-color: lavender">
+      <h3>{{blog.title}}</h3>
+      </div>
+    <div class ="col-sm-4" style="background-color: lavender">
+      <h3>{{user.username}}</h3>
+    </div>
+   </div>
+
+   <div class = " mt-1 row" id="content">
     <p>{{blog.content}}</p>
+    </div>
 </div>
-</section>
 {{/each}}
