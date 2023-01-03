@@ -14,4 +14,14 @@ router.post('/', async (req, res) =>{
     }
 });
 
+router.get('/', async (req, res) => {
+    try{
+      const allBlogs = await Blog.findAll({
+      })
+      res.json(allBlogs)
+    } catch(err){
+      res.status(500).json(err)
+    }
+  });
+
 module.exports = router

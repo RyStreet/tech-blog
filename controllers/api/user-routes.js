@@ -1,5 +1,23 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Blog, Comment } = require('../../models');
+const session = require('express-session');
+const withAuth = require('../../utils/auth');
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+
+
+
+router.get('/', async (req, res) => {
+  try{
+    const allUsers = await User.findAll({
+      attributes: {exclude: ['password']}
+    })
+    res.json(allUsers)
+  } catch(err){
+    res.status(500).json(err)
+  }
+})
+
+
 
 router.post('/', async (req, res) => {
   try {
