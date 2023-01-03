@@ -1,20 +1,9 @@
+<ul>
 {{#each blogPosts as |blog|}}
-<div id = "blogPosts" class = "container border border-dark mt-3">
 
-  <div class = "row" id="titles">
-    <div class ="col-sm-8" style="background-color: lavender">
-      <h3>{{blog.title}}</h3>
-      </div>
-    <div class ="col-sm-4" style="background-color: lavender">
-      <h3>{{user.username}}</h3>
-    </div>
-   </div>
+<ul>
+  {{> blog-info blog}}
+</ul>
 
-   <div class = "mt-1 row" id="content">
-    <p>{{blog.content}}</p>
-    
-    </div>
-    
-  {{comment}}
-</div>
 {{/each}}
+</ul>

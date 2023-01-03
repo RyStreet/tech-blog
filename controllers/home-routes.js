@@ -31,6 +31,42 @@ router.get('/', async (req,res) =>{
     }
 });
 
+router.get('/blog/:id', async (req, res) =>{
+   try{
+     const singleBlogData = await Blog.findByPk({
+        where:{
+            id: req.params.id
+        },
+        attributes:[
+            'id',
+            'title',
+            'content',
+            'user_id'
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            },
+            {
+                model: Comment,
+                attributes: ["id", "content", "user_id", "blog_id"],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            }
+        ],
+    });
+    const singleBlogPost = singleBlogData.map((blog)=> blog.get({plain: true}));
+    res.render('singleBlog', {
+        singleBlogPost,
+    })
+    } catch(err) {
+        res.status(500).json(err)
+};
+});
+
 router.get('/login', (req,res) => {
     if(req.session.loggedIn){
         res.redirect('/');
