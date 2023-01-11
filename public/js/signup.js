@@ -7,7 +7,7 @@ const signUpHandler = async (event) =>{
 
     if(username && email && password){
         const newUser = await fetch('/api/users', {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify({
                 username,
                 email,
@@ -24,4 +24,4 @@ const signUpHandler = async (event) =>{
     }
 }
 
-document.querySelector('.signupForm').addEventListener('submit', signUpHandler);
+document.querySelector('#create-user').addEventListener("submit", signUpHandler);
