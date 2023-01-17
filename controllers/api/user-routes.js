@@ -73,18 +73,24 @@ router.post('/auth/login', async (req, res) =>{
   try{
     const userLogin = await User.findOne({
       where: {email: req.body.email}
-    })
+    });
+    console.log("The User ID is:", userLogin.id)
+
     if(!userLogin){
       res.status(400).json({message: 'No Email or Password Found'})
       return;
     }
+
     const validPW = await userLogin.checkPassword(req.body.password)
+    
     if(!validPW){
       res.status(400).json({message: 'Incorrect Email or Password'})
     return;
     }
+
     req.session.save(()=>{
-      res.session.user_id = userLogin.id;
+      req.session.user_id = userLogin.id;
+      req.session.email = userLogin.email;
       req.session.logged_in = true;
       console.log('User Login:', userLogin)
       res.json({user: userLogin, message: 'Welcome Back!'})
