@@ -1,4 +1,4 @@
-const blogSelect = async (event) => {
+const blogSelect = (event) => {
     event.preventDefault();
     console.log("clicked Blog")
 
@@ -7,3 +7,4 @@ const blogSelect = async (event) => {
 document
 .querySelector('#blogPosts')
 .addEventListener('click', blogSelect)
+

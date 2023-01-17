@@ -69,4 +69,41 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/auth/login', async (req, res) =>{
+  try{
+    const userLogin = await User.findOne({
+      where: {email: req.body.email}
+    })
+    if(!userLogin){
+      res.status(400).json({message: 'No Email or Password Found'})
+      return;
+    }
+    const validPW = await userLogin.checkPassword(req.body.password)
+    if(!validPW){
+      res.status(400).json({message: 'Incorrect Email or Password'})
+    return;
+    }
+    req.session.save(()=>{
+      res.session.user_id = userLogin.id;
+      req.session.logged_in = true;
+      console.log('User Login:', userLogin)
+      res.json({user: userLogin, message: 'Welcome Back!'})
+    })
+  }catch(err){
+    res.status(400).json(err)
+  }
+})
+
+router.post('/auth/logout', (req, res) => {
+  if(req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end()
+    })
+  }  else{
+    res.status(404).end()
+  }
+});
+
+
+
 module.exports = router
