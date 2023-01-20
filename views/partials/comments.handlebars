@@ -1,12 +1,18 @@
-<div class = "comments">
-    {{#each this}}
-    <div class="displayComment">
-        <div class="credentials">
-            {{user.username}}
-        </div>
-        <div class = "content">
-            {{comment.content}}
-        </div>
+{{#each this}}
+<div class = " container border border-dark mt-3">
+  <div class="blogPosts">
+  <div class = "row" id="titles">
+    <div class ="col-sm-8" style="background-color: lavender">
+      </div>
+    <div class ="col-sm-4" style="background-color: lavender">
+      <h3>{{user.username}}</h3>
     </div>
-    {{/each}}
+   </div>
+
+   <div class = "mt-1 row" id="content">
+    <p>{{content}}</p>
+    
+    </div>
+    </div>
 </div>
+{{/each}}

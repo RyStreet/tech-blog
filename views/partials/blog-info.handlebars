@@ -1,8 +1,8 @@
-<div class = "blogPosts container border border-dark mt-3">
-
+<div class = " container border border-dark mt-3">
+  <div class="blogPosts">
   <div class = "row" id="titles">
     <div class ="col-sm-8" style="background-color: lavender">
-      <h3>{{title}}</h3>
+      <h3><span><a href="/blog/{{id}}"> {{title}}</a></span></h3>
       </div>
     <div class ="col-sm-4" style="background-color: lavender">
       <h3>{{user.username}}</h3>
@@ -13,5 +13,7 @@
     <p>{{content}}</p>
     
     </div>
+    </div>
 </div>
-<script src="/js/commentDisplay.js"></script>
+
+{{!-- <script src="/js/commentDisplay.js"></script> --}}

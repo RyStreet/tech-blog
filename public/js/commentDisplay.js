@@ -1,7 +1,7 @@
 const blogSelect = (event) => {
     event.preventDefault();
     console.log("clicked Blog")
-
+    
 }
 
 document

@@ -33,7 +33,7 @@ router.get('/', async (req,res) =>{
 
 router.get('/blog/:id', async (req, res) =>{
    try{
-     const singleBlogData = await Blog.findByPk({
+     const singleBlogData = await Blog.findOne({
         where:{
             id: req.params.id
         },
@@ -58,9 +58,13 @@ router.get('/blog/:id', async (req, res) =>{
             }
         ],
     });
-    const singleBlogPost = singleBlogData.map((blog)=> blog.get({plain: true}));
+    const singleBlogPost = singleBlogData.get({plain: true});
+
+    console.log("!!!!!!!!!", "\n" , "\n" ,JSON.stringify(singleBlogPost), "\n" ,)
+
     res.render('singleBlog', {
         singleBlogPost,
+        loggedIn: true
     })
     } catch(err) {
         res.status(500).json(err)
@@ -92,34 +96,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
             include: [{model: Blog}]
         })
         const userProfile = userData.get({plain: true})
-        
-        const blogData = await Blog.findAll({
-            where:{
-            user_id: req.session.user_id
-            },
-            include: [
-                {
-                    model: User,
-                    attributes: ['username']
-                },
-                {
-                    model: Comment,
-                    attributes: ["id", "content", "user_id", "blog_id"],
-                    include: {
-                        model: User,
-                        attributes: ['username']
-                    }
-                }
-            ],
-        });
-        const blogPosts = blogData.map((blog)=> blog.get({plain: true}));
-
-        
-        
-
+    
         res.render("dashboard", {
             ...userProfile,
-            blogPosts,
+            
             loggedIn: true
 
         })
