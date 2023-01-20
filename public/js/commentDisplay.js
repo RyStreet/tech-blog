@@ -5,6 +5,6 @@ const blogSelect = (event) => {
 }
 
 document
-.querySelector('#blogPosts')
+.querySelector('.blogPosts')
 .addEventListener('click', blogSelect)
 

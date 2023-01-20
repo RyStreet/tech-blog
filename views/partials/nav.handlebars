@@ -2,9 +2,14 @@
         <a class="navbar-brand" href="#">Tech Blog</a>
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only"></span></a>
-            <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
             <a class="nav-item nav-link" href="/login">Login</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
+            <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+            </div>
+            {{#if loggedIn}}
+            <button id="userLogout" type="click" class="btn btn-primary">Log Out</button>
+            {{/if}}
+        
+  </nav>
 
-        </div>
-      </nav>
+<script src="/js/logout.js"></script>

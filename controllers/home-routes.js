@@ -83,6 +83,8 @@ router.get('/signup', (req,res) =>{
     res.render('signup')
 });
 
+
+
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
@@ -90,9 +92,34 @@ router.get('/dashboard', withAuth, async (req, res) => {
             include: [{model: Blog}]
         })
         const userProfile = userData.get({plain: true})
+        
+        const blogData = await Blog.findAll({
+            where:{
+            user_id: req.session.user_id
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                },
+                {
+                    model: Comment,
+                    attributes: ["id", "content", "user_id", "blog_id"],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+                }
+            ],
+        });
+        const blogPosts = blogData.map((blog)=> blog.get({plain: true}));
+
+        
+        
 
         res.render("dashboard", {
             ...userProfile,
+            blogPosts,
             loggedIn: true
 
         })
