@@ -1,4 +1,4 @@
-<form id="editUserForm" class="form-group">
+<form id="editUserForm" class="mt-2 container form-group">
 
     <div id="editUserName">
         <label for="editName">Edit Your Name</label>
@@ -10,8 +10,11 @@
         <input class="form-control" type="text" id="editEmail" name="editUserEmail" value="{{editUser.email}}"/>
     </div>
 
-    <button id="editUserBtn" type="submit" class="btn btn-primary">Edit User</button>
+    <button id="editUserBtn" type="submit" class=" mt-1 btn btn-primary">Edit User</button>
 
 </form>
 
+<div class="container">
+<button id="deleteUserBtn" type="click" class=" mt-5 btn btn-danger">Delete User</button>
+</div>
 <script src="/js/editUser.js"></script>

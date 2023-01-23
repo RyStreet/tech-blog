@@ -1,17 +1,18 @@
 {{>blog-info singleBlogPost}}
 
-<h3 class="mt-4 ml-2">Comments:</h3>
+<h3 class="container mt-4 ml-2">Comments:</h3>
 
 {{>comments singleBlogPost.comments}}
 
 {{#if loggedIn}}
-<form class="createComment mt-2 d-flex justify-content-center">
+<form class="createComment mt-4 container">
+  <h3>Add a Comment</h3>
   <div>
-    <input class="" name="commentContent"></input>
+    <input class="form-control mt-2" name="commentContent"></input>
   </div>
 
-  <div>
-    <button class="" type="submit">Add comment</button>
+  <div class="">
+    <button class=" btn btn-primary" type="submit">Add comment</button>
   </div>
 </form>
 {{/if}}

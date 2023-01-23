@@ -30,6 +30,27 @@ const editBlog = async (event) =>{
 
 }
 
+const deleteBlog = async (event) =>{
+    event.preventDefault();
+    console.log("HIT")
+
+    const id = window.location.toString().split('/')[
+        window.location.toString().split('/').length -1
+    ];
+
+    const deleteBlog = await fetch(`/api/blogs/${id}`, {
+        method: 'DELETE'
+    });
+    if(deleteBlog.ok){
+        alert('Blog Deleted'),
+        document.location.replace('/dashboard')
+    } else {
+        alert(deleteBlog.statusText)
+    }
+};
+
+document.querySelector('#deletePostBtn').addEventListener('click', deleteBlog)
+
 document
 .querySelector('#editBlogForm')
 .addEventListener('submit', editBlog);

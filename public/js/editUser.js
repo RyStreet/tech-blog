@@ -26,6 +26,36 @@ const editUser = async (event) => {
         }
     }
 }
+
+const deleteUser = async (event) => {
+    event.preventDefault();
+    console.log("hit")
+
+    let text = "Are you sure you want to delete your user?\nThis is irreversible."
+
+    if(confirm(text) == true){
+        const id = window.location.toString().split('/')[
+            window.location.toString().split('/').length -1]
+    
+        const deleteUser = await fetch(`/api/users/${id}`, {
+            method: 'DELETE'
+        });
+        if(deleteUser.ok){
+            alert('User Deleted'),
+            document.location.replace('/')
+        } else {
+            alert(deleteUser.statusText)
+        }
+    } else{
+        return
+    }
+
+}
+
+document
+.querySelector('#deleteUserBtn')
+.addEventListener("click", deleteUser);
+
 document
 .querySelector('#editUserForm')
-.addEventListener("submit", editUser)
+.addEventListener("submit", editUser);
