@@ -1,0 +1,19 @@
+{{!-- {{>blog-info editBlogPost}} --}}
+
+<form id="editBlogForm" class="form-group">
+
+    <div id="editPostTitle">
+        <label for="editTitle">Edit Your Title</label>
+        <input class="form-control" type="text" id="editTitle" name="editPostTitle" value="{{editBlogPost.title}}"/>
+    </div>
+
+    <div id="editPostText">
+        <label for="text">Edit Your Blog</label>
+        <input class="form-control" type="text" id="editText" name="editPostText" value="{{editBlogPost.content}}"/>
+    </div>
+
+    <button id="editPostBtn" type="submit" class="btn btn-primary">Edit Post</button>
+
+</form>
+
+<script src="/js/editBlog.js"></script>

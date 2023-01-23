@@ -108,5 +108,46 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 })
 
+router.get('/blog/edit/:id', async (req, res) =>{
+    try{
+      const editBlogData = await Blog.findOne({
+         where:{
+             id: req.params.id
+         },
+         attributes:[
+             'id',
+             'title',
+             'content',
+             'user_id'
+         ],
+         include: [
+             {
+                 model: User,
+                 attributes: ['username']
+             },
+             {
+                 model: Comment,
+                 attributes: ["id", "content", "user_id", "blog_id"],
+                 include: {
+                     model: User,
+                     attributes: ['username']
+                 }
+             }
+         ],
+     });
+     const editBlogPost = editBlogData.get({plain: true});
+ 
+     console.log("!!!!!!!!!", "\n" , "\n" ,JSON.stringify(editBlogPost), "\n" ,)
+ 
+     res.render('editBlog', {
+         editBlogPost,
+         loggedIn: true
+     })
+     } catch(err) {
+         res.status(500).json(err)
+ };
+ });
+
+
 
 module.exports = router;
