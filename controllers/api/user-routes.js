@@ -110,6 +110,20 @@ router.post('/auth/logout', (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
 
+  try{ 
+    const updateUser = User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id
+    },
+  });
+  res.json(updateUser)
+} catch{
+  res.status(500).json(err)
+}
+
+})
 
 module.exports = router
