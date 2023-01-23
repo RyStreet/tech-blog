@@ -123,7 +123,6 @@ router.put('/:id', async (req, res) => {
 } catch{
   res.status(500).json(err)
 }
-
 })
 
 module.exports = router

@@ -96,12 +96,32 @@ router.get('/dashboard', withAuth, async (req, res) => {
             include: [{model: Blog}]
         })
         const userProfile = userData.get({plain: true})
-    
+        
+        console.log(userProfile)
+
         res.render("dashboard", {
             ...userProfile,
             
             loggedIn: true
 
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+router.get('/user/edit/:id', async (req, res) => {
+    try{
+        const editUserData = await User.findOne({
+            where:{
+                id: req.params.id
+            },
+            attributes: {exclude: ['password']}
+            });
+        const editUser = editUserData.get({plain: true})
+        res.render('editUser', {
+            editUser,
+            loggedIn: true,
         })
     } catch (err) {
         res.status(500).json(err)
