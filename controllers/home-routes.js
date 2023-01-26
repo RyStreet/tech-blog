@@ -24,7 +24,7 @@ router.get('/', async (req,res) =>{
 
         res.render('homepage', {
             blogPosts,
-            logged_in: req.session.logged_in
+            loggedIn: req.session.logged_in
         });
     } catch (err){
         res.status(500).json(err)
@@ -64,7 +64,7 @@ router.get('/blog/:id', async (req, res) =>{
 
     res.render('singleBlog', {
         singleBlogPost,
-        loggedIn: true
+        loggedIn: req.session.logged_in
     })
     } catch(err) {
         res.status(500).json(err)
@@ -102,7 +102,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.render("dashboard", {
             ...userProfile,
             
-            loggedIn: true
+            loggedIn: req.session.logged_in
 
         })
     } catch (err) {
@@ -161,7 +161,7 @@ router.get('/blog/edit/:id', async (req, res) =>{
  
      res.render('editBlog', {
          editBlogPost,
-         loggedIn: true
+         loggedIn: req.session.logged_in
      })
      } catch(err) {
          res.status(500).json(err)
