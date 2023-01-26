@@ -13,6 +13,8 @@ ___
 ___
   ## Description 
   This project is a CMS-styled tech blog created using NodeJS, Express, Handlebars and MySQL. Users can sign up, write, edit and delete posts, and comment on other posts.
+  ![image](https://user-images.githubusercontent.com/112584082/214930753-ebe26805-f477-4eae-bc13-b7a3ca2eff2a.png)
+
 ___
   ## Installation 
   Visit the heroku link to view the deployed app. https://bright-futures.herokuapp.com
